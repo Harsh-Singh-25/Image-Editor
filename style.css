@@ -120,3 +120,8 @@ main section .right .filter input::-webkit-slider-thumb{
     background-color: blue;
     margin-top: -8.5px;
 }
+
+canvas{
+    width: 90%;
+    height: 80vh;
+}
