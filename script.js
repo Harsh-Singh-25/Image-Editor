@@ -11,12 +11,6 @@ const filters = {
         max: 200,
         unit: "%"
     },
-    exposue:  {
-        value: 100,
-        min: 0,
-        max: 200,
-        unit: "%"
-    },
     saturation:  {
         value: 100,
         min: 0,
@@ -29,7 +23,7 @@ const filters = {
         max: 200,
         unit: "deg"
     },
-    Blur:  {
+    blur:  {
         value: 0,
         min: 0,
         max: 360,
@@ -64,6 +58,8 @@ const filters = {
 const imageCanvas = document.querySelector("#image-canvas")
 const imgInput = document.querySelector("#image-input")
 const canvasCtx = imageCanvas.getContext("2d")
+let file = null
+let image = null
 
 const filtersCounter = document.querySelector(".filters")
 
@@ -86,6 +82,11 @@ function createFilterElement(name, unit = "%", min, max, value){
     div.appendChild(p)
     div.appendChild(input)
 
+    input.addEventListener("input", (event) => {
+        filters[ name ].value =  input.value
+        applyFilters()
+    })
+
     return div
 }
 
@@ -104,8 +105,24 @@ imgInput.addEventListener("change", (event) => {
     img.src = URL.createObjectURL(file)
 
     img.onload = () => {
+        image = img
         imageCanvas.width = img.width
         imageCanvas.height = img.height
         canvasCtx.drawImage(img, 0 ,0)
     }
 })
+
+function applyFilters() {
+    canvasCtx.filter = `
+        brightness(${filters.brightness.value}${filters.brightness.unit})
+        contrast(${filters.contrast.value}${filters.contrast.unit})
+        saturate(${filters.saturation.value}${filters.saturation.unit})
+        hue-rotate(${filters.huerotation.value}${filters.huerotation.unit})
+        blur(${filters.blur.value}${filters.blur.unit})
+        grayscale(${filters.grayscale.value}${filters.grayscale.unit})
+        sepia(${filters.sepia.value}${filters.sepia.unit})
+        opacity(${filters.opacity.value}${filters.opacity.unit})
+        invert(${filters.invert.value}${filters.invert.unit})
+    `
+    canvasCtx.drawImage(image, 0, 0)
+}
