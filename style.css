@@ -122,7 +122,77 @@ canvas {
   width: auto;
   height: auto;
   object-fit: contain;
+  display: block;
 }
+
+/* ==========================
+   TOP ACTION BUTTONS
+========================== */
+
+.top .btn {
+  min-height: 44px;
+}
+
+/* ==========================
+   RIGHT PANEL CONTENT
+========================== */
+
+.filters {
+  padding-right: 6px;
+  scrollbar-gutter: stable;
+}
+
+.filters .filter {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 0.9rem 0.9rem 0.85rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.filters .filter p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Presets (if you use them in HTML) */
+.presets {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.preset-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-white);
+  padding: 0.45rem 0.7rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.preset-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(96, 165, 250, 0.6);
+  background: rgba(37, 99, 235, 0.18);
+}
+
+.preset-btn:active {
+  transform: translateY(0);
+}
+
+/* Range slider track/ thumb polish */
+.filter input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(96, 165, 250, 0.22);
+}
+
 
 /* ==========================
    FILTER PANEL
